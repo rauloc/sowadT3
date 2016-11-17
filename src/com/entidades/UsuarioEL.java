@@ -8,6 +8,8 @@ public class UsuarioEL {
 	private String password;
 	private boolean estado;
 	private String fechaRegistro;
+	//PRUEBA GITHUB OCOLA
+	
 	public int getIdUsuario() {
 		return idUsuario;
 	}
