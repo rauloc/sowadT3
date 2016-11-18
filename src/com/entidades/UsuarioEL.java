@@ -8,7 +8,8 @@ public class UsuarioEL {
 	private String password;
 	private boolean estado;
 	private String fechaRegistro;
-	//prueba
+	
+	//prueba 11111
 	public int getIdUsuario() {
 		return idUsuario;
 	}
