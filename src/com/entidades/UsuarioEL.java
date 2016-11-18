@@ -8,8 +8,6 @@ public class UsuarioEL {
 	private String password;
 	private boolean estado;
 	private String fechaRegistro;
-
-	private String prueba;
 	
 	public int getIdUsuario() {
 		return idUsuario;
