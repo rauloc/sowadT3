@@ -9,6 +9,8 @@ public class UsuarioEL {
 	private boolean estado;
 	private String fechaRegistro;
 
+	private String ocola;
+	
 	public int getIdUsuario() {
 		return idUsuario;
 	}
