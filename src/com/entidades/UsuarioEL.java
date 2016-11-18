@@ -10,7 +10,7 @@ public class UsuarioEL {
 	private String fechaRegistro;
 	
 	///asdasd
-	
+	//1111
 	public int getIdUsuario() {
 		return idUsuario;
 	}
