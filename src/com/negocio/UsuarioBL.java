@@ -27,5 +27,13 @@ public class UsuarioBL {
 				throw e;
 			}
 		}
-		
+
+		public Boolean InsertarUsuario(UsuarioEL p) throws Exception {
+			try {
+				return UsuarioDL.Instancia().InsertarUsuario(p);
+			} catch (Exception e) {
+				throw e;
+			}
+		}
+
 }
