@@ -1,15 +1,27 @@
 package Forms;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.entidades.UsuarioEL;
+import com.negocio.UsuarioBL;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class frmLogin extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField txtUsuario;
+	private JPasswordField txtPassword;
 
 	/**
 	 * Launch the application.
@@ -35,8 +47,45 @@ public class frmLogin extends JFrame {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblLogin = new JLabel("LOGIN");
+		lblLogin.setBounds(192, 28, 46, 14);
+		contentPane.add(lblLogin);
+		
+		JLabel lblNewLabel = new JLabel("Usuario");
+		lblNewLabel.setBounds(58, 79, 78, 14);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setBounds(58, 128, 90, 14);
+		contentPane.add(lblPassword);
+		
+		txtUsuario = new JTextField();
+		txtUsuario.setBounds(146, 76, 166, 20);
+		contentPane.add(txtUsuario);
+		txtUsuario.setColumns(10);
+		
+		txtPassword = new JPasswordField();
+		txtPassword.setBounds(146, 125, 166, 20);
+		contentPane.add(txtPassword);
+		
+		JButton btnIngresar = new JButton("INGRESAR");
+		btnIngresar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+				String Usuario = txtUsuario.getText(); 	
+				String Password = txtPassword.getText();
+				UsuarioEL u = UsuarioBL.Instancia().VerificarAcceso(Usuario, Password);
+				}catch(Exception ex){
+					JOptionPane.showMessageDialog(null, ex.getMessage(), 
+							"Logoin", JOptionPane.WARNING_MESSAGE);
+					ex.printStackTrace();
+				}
+			}
+		});
+		btnIngresar.setBounds(167, 183, 107, 23);
+		contentPane.add(btnIngresar);
 	}
-
 }
