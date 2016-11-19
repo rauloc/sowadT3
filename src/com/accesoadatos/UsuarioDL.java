@@ -47,4 +47,29 @@ public class UsuarioDL {
 					cn.close();
 				}
 			}
+
+			public Boolean InsertarUsuario(UsuarioEL p) throws Exception {
+				Connection cn = null;
+				Boolean inserto = false;
+				try {
+					cn = Conexion.Instancia().Conectar();
+					CallableStatement cst = cn.prepareCall("{call sp_InsertarPersona(?,?,?,?,?,?,?,?)}");
+					cst.setString(1, p.getPersona().getNombres());
+					cst.setString(2, p.getPersona().getApellidos());
+					cst.setString(3, p.getPersona().getDniPersona());
+					cst.setString(4, p.getPersona().getDireccion());
+					cst.setString(5, p.getPersona().getFechaNacimiento());
+					cst.setString(6, p.getPersona().getSexo());
+					cst.setString(7, p.getLogin());
+					cst.setString(8, p.getPassword());
+					int i = cst.executeUpdate();
+					if(i>0){ inserto=true;}
+				} catch (Exception e) {
+					throw e;
+				} finally {
+					cn.close();
+				}
+				return inserto;
+			}
+
 }
