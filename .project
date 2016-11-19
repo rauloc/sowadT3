@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>c_Negocio</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>c_Accesoadatos</name>
+			<type>2</type>
+			<locationURI>WORKSPACE_LOC/c_Accesoadatos/src</locationURI>
+		</link>
+		<link>
+			<name>c_Entidades</name>
+			<type>2</type>
+			<locationURI>WORKSPACE_LOC/c_Entidades/src</locationURI>
+		</link>
+	</linkedResources>
+</projectDescription>
