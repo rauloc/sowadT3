@@ -25,6 +25,5 @@ public class Conexion {
 				}
 				return cn;
 			}
-			
-			///PRUEBA GITHUB 1
+
 }

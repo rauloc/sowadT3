@@ -47,7 +47,6 @@ public class UsuarioDL {
 					cn.close();
 				}
 			}
-
 			public Boolean InsertarUsuario(UsuarioEL p) throws Exception {
 				Connection cn = null;
 				Boolean inserto = false;
@@ -72,4 +71,10 @@ public class UsuarioDL {
 				return inserto;
 			}
 
+	//a esto decía men solo es
+	//en la chamba no lo hacemos eso, por que eso genera conflicto, osea solo comiteamos al avance que hiciste
+	//por ejemplo si hiciste en UsuarioDL, comiteas UsuarioDL,
+	//ahora solo queda hacer d nuevo commitd manera q quede todo como antes...
+	//ahora para solucionar, se podria hacer crear el index aquí y luego comitear solo esto
+	//pera
 }
