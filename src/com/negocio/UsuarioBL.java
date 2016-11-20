@@ -20,6 +20,7 @@ public class UsuarioBL {
 				UsuarioEL u = UsuarioDL.Instancia().VerificarAcceso(_Usuario, _Pass);
 				if(u==null){
 					throw new ArithmeticException("Usuario o Password no valido!");
+
 			}else if(!u.isEstado()){
 				throw new ArithmeticException("Su usuario ha sido dado de baja!");
 			}				return u;
@@ -28,7 +29,7 @@ public class UsuarioBL {
 			}
 		}
 
-		//COMMIT PRUEBA
+		//CORREGIDO
 		public Boolean InsertarUsuario(UsuarioEL p) throws Exception {
 			try {
 				return UsuarioDL.Instancia().InsertarUsuario(p);
@@ -38,3 +39,5 @@ public class UsuarioBL {
 		}
 
 }
+
+	
