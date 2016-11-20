@@ -20,7 +20,9 @@ public class UsuarioBL {
 				UsuarioEL u = UsuarioDL.Instancia().VerificarAcceso(_Usuario, _Pass);
 				if(u==null){
 					throw new ArithmeticException("Usuario o Password no valido!");
-
+				}
+				if(u.getTipo().getIdTipo()!=1){
+						throw new ArithmeticException("Usuario no valido para esta accion");
 			}else if(!u.isEstado()){
 				throw new ArithmeticException("Su usuario ha sido dado de baja!");
 			}				return u;
