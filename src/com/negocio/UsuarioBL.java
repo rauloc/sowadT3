@@ -28,6 +28,7 @@ public class UsuarioBL {
 			}
 		}
 
+		//COMMIT PRUEBA
 		public Boolean InsertarUsuario(UsuarioEL p) throws Exception {
 			try {
 				return UsuarioDL.Instancia().InsertarUsuario(p);
