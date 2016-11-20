@@ -91,5 +91,6 @@ public class frmLogin extends JFrame {
 		});
 		btnIngresar.setBounds(167, 183, 107, 23);
 		contentPane.add(btnIngresar);
+
 	}
 }
