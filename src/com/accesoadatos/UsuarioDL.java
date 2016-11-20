@@ -20,14 +20,15 @@ public class UsuarioDL {
 				return _Instancia;
 			}
 	// endSingleton
-			public UsuarioEL VerificarAcceso(String _Usuario, String _Pass) throws Exception {
+			public UsuarioEL VerificarAcceso(String _Usuario, String _Pass, int idTipo) throws Exception {
 				Connection cn = null;
 				UsuarioEL u = null;
 				try {
 					cn = Conexion.Instancia().Conectar();
-					CallableStatement cst = cn.prepareCall("{call sp_VerificarAcceso(?,?)}");
+					CallableStatement cst = cn.prepareCall("{call sp_VerificarAcceso(?,?,?)}");
 					cst.setString(1, _Usuario);
 					cst.setString(2, _Pass);
+					cst.setInt(3, idTipo);
 					ResultSet rs = cst.executeQuery();
 					if (rs.next()) {
 						u = new UsuarioEL();
