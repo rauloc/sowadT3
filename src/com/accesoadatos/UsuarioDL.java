@@ -34,6 +34,9 @@ public class UsuarioDL {
 						u.setIdUsuario(rs.getInt("idUsuario"));
 						u.setLogin(rs.getString("login"));
 						u.setEstado(rs.getBoolean("estado"));
+						TipoEL t=new TipoEL();
+						t.setIdTipo(rs.getInt("idTipo"));
+						u.setTipo(t);
 						PersonaEL p=new PersonaEL();
 						p.setNombres(rs.getString("nombres"));
 						p.setApellidos(rs.getString("apellidos"));
