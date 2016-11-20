@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 
 import com.entidades.PersonaEL;
+import com.entidades.TipoEL;
 import com.entidades.UsuarioEL;
 
 public class UsuarioDL {
@@ -33,6 +34,9 @@ public class UsuarioDL {
 						u.setIdUsuario(rs.getInt("idUsuario"));
 						u.setLogin(rs.getString("login"));
 						u.setEstado(rs.getBoolean("estado"));
+						TipoEL t=new TipoEL();
+						t.setIdTipo(rs.getInt("idTipo"));
+						u.setTipo(t);
 						PersonaEL p=new PersonaEL();
 						p.setNombres(rs.getString("nombres"));
 						p.setApellidos(rs.getString("apellidos"));
@@ -70,11 +74,4 @@ public class UsuarioDL {
 				}
 				return inserto;
 			}
-
-	//a esto decía men solo es
-	//en la chamba no lo hacemos eso, por que eso genera conflicto, osea solo comiteamos al avance que hiciste
-	//por ejemplo si hiciste en UsuarioDL, comiteas UsuarioDL,
-	//ahora solo queda hacer d nuevo commitd manera q quede todo como antes...
-	//ahora para solucionar, se podria hacer crear el index aquí y luego comitear solo esto
-	//pera
 }
