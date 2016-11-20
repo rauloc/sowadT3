@@ -14,10 +14,10 @@ public class UsuarioBL {
 			return _Instancia;
 		}
 	//endSingleton
-		public UsuarioEL VerificarAcceso(String _Usuario, String _Pass) 
+		public UsuarioEL VerificarAcceso(String _Usuario, String _Pass, int idTipo) 
 				throws Exception{
 			try {
-				UsuarioEL u = UsuarioDL.Instancia().VerificarAcceso(_Usuario, _Pass);
+				UsuarioEL u = UsuarioDL.Instancia().VerificarAcceso(_Usuario, _Pass,idTipo);
 				if(u==null){
 					throw new ArithmeticException("Usuario o Password no valido!");
 
