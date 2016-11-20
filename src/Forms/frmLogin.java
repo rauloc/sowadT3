@@ -77,7 +77,11 @@ public class frmLogin extends JFrame {
 				try {
 				String Usuario = txtUsuario.getText(); 	
 				String Password = txtPassword.getText();
-				UsuarioEL u = UsuarioBL.Instancia().VerificarAcceso(Usuario, Password);
+				UsuarioEL u = UsuarioBL.Instancia().VerificarAcceso(Usuario, Password,2);
+				frmPrincipal fprincipal=new frmPrincipal();
+				fprincipal.show();
+				dispose();
+				JOptionPane.showMessageDialog(null, "Bienvenido a la Intranet de CineAPP");
 				}catch(Exception ex){
 					JOptionPane.showMessageDialog(null, ex.getMessage(), 
 							"Logoin", JOptionPane.WARNING_MESSAGE);
