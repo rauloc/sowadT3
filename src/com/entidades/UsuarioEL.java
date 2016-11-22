@@ -1,57 +1,62 @@
 package com.entidades;
 
 public class UsuarioEL {
-	private int idUsuario;
-	private TipoEL Tipo;
-	private PersonaEL Persona;
-	private String login;
-	private String password;
-	private boolean estado;
-	private String fechaRegistro;
+	private int IdUsuario;
+	private String Usuario;
+	private String Password;
+	private String Nombre;
+	private String Apellido;
+	private int DNI;
+//	private Date FechaAlta;
+	private String TipoUsuario;
+	private boolean Estado;
 	
-	//COMMIT PRUEBA
-	
-	public int getIdUsuario() {
-		return idUsuario;
-	}
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
-	}
-	public TipoEL getTipo() {
-		return Tipo;
-	}
-	public void setTipo(TipoEL tipo) {
-		Tipo = tipo;
-	}
-	public PersonaEL getPersona() {
-		return Persona;
-	}
 	public boolean isEstado() {
-		return estado;
+		return Estado;
 	}
 	public void setEstado(boolean estado) {
-		this.estado = estado;
+		Estado = estado;
 	}
-	public void setPersona(PersonaEL persona) {
-		Persona = persona;
+	public int getIdUsuario() {
+		return IdUsuario;
 	}
-	public String getLogin() {
-		return login;
+	public void setIdUsuario(int idUsuario) {
+		IdUsuario = idUsuario;
 	}
-	public void setLogin(String login) {
-		this.login = login;
+	public String getUsuario() {
+		return Usuario;
+	}
+	public void setUsuario(String usuario) {
+		Usuario = usuario;
 	}
 	public String getPassword() {
-		return password;
+		return Password;
 	}
 	public void setPassword(String password) {
-		this.password = password;
+		Password = password;
 	}
-	public String getFechaRegistro() {
-		return fechaRegistro;
+	public String getNombre() {
+		return Nombre;
 	}
-	public void setFechaRegistro(String fechaRegistro) {
-		this.fechaRegistro = fechaRegistro;
+	public void setNombre(String nombre) {
+		Nombre = nombre;
 	}
-
+	public String getApellido() {
+		return Apellido;
+	}
+	public void setApellido(String apellido) {
+		Apellido = apellido;
+	}
+	public int getDNI() {
+		return DNI;
+	}
+	public void setDNI(int dNI) {
+		DNI = dNI;
+	}
+	public String getTipoUsuario() {
+		return TipoUsuario;
+	}
+	public void setTipoUsuario(String tipoUsuario) {
+		TipoUsuario = tipoUsuario;
+	}
 }
