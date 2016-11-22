@@ -20,7 +20,34 @@ public class UsuarioDL {
 				return _Instancia;
 			}
 	// endSingleton
-			public UsuarioEL VerificarAcceso(String _Usuario, String _Pass, int idTipo) throws Exception {
+			
+			public UsuarioEL VerificarAcceso(String _Usuario, String _Pass) throws Exception {
+				Connection cn = null;
+				UsuarioEL u = null;
+				try {
+					cn = Conexion.Instancia().Conectar();
+					CallableStatement cst = cn.prepareCall("{call sp_VerificarAcceso(?,?)}");
+					cst.setString(1, _Usuario);
+					cst.setString(2, _Pass);
+					ResultSet rs = cst.executeQuery();
+					if (rs.next()) {
+						u = new UsuarioEL();
+						u.setIdUsuario(rs.getInt("IdUsuario"));
+						u.setUsuario(rs.getString("Usuario"));
+						u.setNombre(rs.getString("Nombre"));
+						u.setApellido(rs.getString("Apellido"));
+						u.setDNI(rs.getInt("DNI"));
+						u.setTipoUsuario(rs.getString("TipoUsuario"));
+					}
+					return u;
+				} catch (Exception e) {
+					throw e;
+				} finally {
+					cn.close();
+				}
+			}
+			
+			/*public UsuarioEL VerificarAcceso(String _Usuario, String _Pass, int idTipo) throws Exception {
 				Connection cn = null;
 				UsuarioEL u = null;
 				try {
@@ -74,13 +101,5 @@ public class UsuarioDL {
 					cn.close();
 				}
 				return inserto;
-			}
-
-	//a esto decía men solo es
-	//en la chamba no lo hacemos eso, por que eso genera conflicto, osea solo comiteamos al avance que hiciste
-	//por ejemplo si hiciste en UsuarioDL, comiteas UsuarioDL,
-	//ahora solo queda hacer d nuevo commitd manera q quede todo como antes...
-	//ahora para solucionar, se podria hacer crear el index aquí y luego comitear solo esto
-	//pera
-						
+			}	*/			
 }
