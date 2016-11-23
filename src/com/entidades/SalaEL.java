@@ -2,8 +2,11 @@ package com.entidades;
 
 public class SalaEL {
 	private int idSala;
+	private String Nombre;
+	private int Filas;
+	private int Butacasporfila;
 	private CineEL cine;
-	private int nroSala;
+	private boolean Estado;
 	
 	public int getIdSala() {
 		return idSala;
@@ -11,17 +14,38 @@ public class SalaEL {
 	public void setIdSala(int idSala) {
 		this.idSala = idSala;
 	}
+	public String getNombre() {
+		return Nombre;
+	}
+	public void setNombre(String nombre) {
+		Nombre = nombre;
+	}
+	public int getFilas() {
+		return Filas;
+	}
+	public void setFilas(int filas) {
+		Filas = filas;
+	}
+	public int getButacasporfila() {
+		return Butacasporfila;
+	}
+	public void setButacasporfila(int butacasporfila) {
+		Butacasporfila = butacasporfila;
+	}
 	public CineEL getCine() {
 		return cine;
 	}
 	public void setCine(CineEL cine) {
 		this.cine = cine;
 	}
-	public int getNroSala() {
-		return nroSala;
+	public boolean isEstado() {
+		return Estado;
 	}
-	public void setNroSala(int nroSala) {
-		this.nroSala = nroSala;
+	public void setEstado(boolean estado) {
+		Estado = estado;
 	}
+	
+	
+	
 
 }
