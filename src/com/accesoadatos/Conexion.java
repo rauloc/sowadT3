@@ -22,7 +22,7 @@ public class Conexion {
 							"databaseName=BD_Cine", "sa", "123456");*/
 					
 					cn = DriverManager.getConnection("jdbc:sqlserver://sowad4471.cloudapp.net:1433;"+
-					"databaseName=BD_Cine", "sa", "123456T2sowad");
+					"databaseName=bdcinema", "sa", "123456T2sowad");
 					
 				} catch (Exception e) {
 					throw e;
