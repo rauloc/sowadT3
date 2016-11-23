@@ -29,14 +29,13 @@ public class UsuarioBL {
 			}
 		}
 
-		//CORREGIDO
-	/*	public Boolean InsertarUsuario(UsuarioEL p) throws Exception {
+		public Boolean InsertarUsuario(UsuarioEL p) throws Exception {
 			try {
 				return UsuarioDL.Instancia().InsertarUsuario(p);
 			} catch (Exception e) {
 				throw e;
 			}
-		}*/
+		}
 
 }
 
