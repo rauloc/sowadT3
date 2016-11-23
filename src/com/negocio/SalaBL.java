@@ -18,12 +18,12 @@ public class SalaBL {
 	}
 	//endSingleton
 	
-	public ArrayList<SalaEL> ListarCiudad(int idCine) throws Exception{
-		try{				
-			return SalaDL.Instancia().ListarSala(idCine);
+	public boolean InsertarSala(SalaEL d) throws Exception{			
+		try{								
+			return SalaDL.Instancia().InsertarSala(d);
 		}catch(Exception e){
 			throw e;
-		}
+		}			
 	}
 	
 	

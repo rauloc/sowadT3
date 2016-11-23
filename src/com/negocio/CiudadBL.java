@@ -3,7 +3,9 @@ package com.negocio;
 import java.util.ArrayList;
 
 import com.accesoadatos.CiudadDL;
+import com.accesoadatos.SalaDL;
 import com.entidades.CiudadEL;
+import com.entidades.SalaEL;
 
 public class CiudadBL {
 
@@ -26,5 +28,12 @@ public class CiudadBL {
 		}
 	}
 	
+	public boolean InsertarCiudad(CiudadEL d) throws Exception{			
+		try{								
+			return CiudadDL.Instancia().InsertarCiudad(d);
+		}catch(Exception e){
+			throw e;
+		}			
+	}
 	
 }
