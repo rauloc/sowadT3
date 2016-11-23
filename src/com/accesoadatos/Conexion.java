@@ -14,6 +14,7 @@ public class Conexion {
 				return _Instancia;
 			}
 	//endSingleton
+			//arredlando 
 			public Connection Conectar() throws Exception{
 				Connection cn = null;
 				try {
