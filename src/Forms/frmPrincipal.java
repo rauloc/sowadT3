@@ -12,12 +12,15 @@ import javax.swing.JMenu;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JDesktopPane;
+import java.awt.Component;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class frmPrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private JDesktopPane dspContenedor;
-
 	/**
 	 * Launch the application.
 	 */
@@ -26,6 +29,7 @@ public class frmPrincipal extends JFrame {
 			public void run() {
 				try {
 					frmPrincipal frame = new frmPrincipal();
+					frame.setExtendedState(MAXIMIZED_BOTH);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,7 +43,7 @@ public class frmPrincipal extends JFrame {
 	 */
 	public frmPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 522, 415);
+		setBounds(100, 100, 722, 415);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -59,10 +63,9 @@ public class frmPrincipal extends JFrame {
 		JMenuItem mntmCartelera = new JMenuItem("Cartelera");
 		mntmCartelera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				frmCartelera fcartelera=new frmCartelera();
-				dspContenedor.add(fcartelera);
-				fcartelera.setVisible(true);
-				//fcartelera.show();
+				frmFuncion c=new frmFuncion();
+				dspContenedor.add(c);
+				c.setVisible(true);
 			}
 		});
 		mnProgramacion.add(mntmCartelera);
@@ -77,15 +80,21 @@ public class frmPrincipal extends JFrame {
 		mnRegistro.add(mntmCines);
 		
 		JMenuItem mntmSalas = new JMenuItem("Salas");
+		mntmSalas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frmSala s=new frmSala();
+				dspContenedor.add(s);
+				s.setVisible(true);
+			}
+		});
 		mnRegistro.add(mntmSalas);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		dspContenedor = new JDesktopPane();
-		dspContenedor.setBounds(0, 357, 506, -358);
 		contentPane.add(dspContenedor);
-		dspContenedor.setLayout(null);
+		//dspContenedor.setLayout(null);
 	}
 }
