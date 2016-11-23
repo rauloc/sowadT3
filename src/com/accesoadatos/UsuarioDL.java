@@ -38,6 +38,7 @@ public class UsuarioDL {
 						u.setApellido(rs.getString("Apellido"));
 						u.setDNI(rs.getInt("DNI"));
 						u.setTipoUsuario(rs.getString("TipoUsuario"));
+						u.setEstado(rs.getBoolean("Estado"));
 					}
 					return u;
 				} catch (Exception e) {
