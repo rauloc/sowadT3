@@ -27,6 +27,7 @@ public class frmSala extends JInternalFrame {
 	private JTextField txtFilasCine;
 	private JTextField txtButacasCine;
 	private JComboBox cboCine;
+	private JCheckBox chkEstado;
 	
 		//llenar comboCine
 		private void LlenarComboCine(){
@@ -102,11 +103,7 @@ public class frmSala extends JInternalFrame {
 		lblCine.setBounds(37, 183, 75, 28);
 		getContentPane().add(lblCine);
 		
-		cboCine = new JComboBox();
-		cboCine.setBounds(154, 183, 200, 28);
-		getContentPane().add(cboCine);
-		
-		JCheckBox chkEstado = new JCheckBox("Estado");
+		chkEstado = new JCheckBox("Estado");
 		chkEstado.setBounds(154, 230, 97, 23);
 		getContentPane().add(chkEstado);
 		
@@ -120,8 +117,9 @@ public class frmSala extends JInternalFrame {
 					s.setButacasporfila(Integer.parseInt(txtButacasCine.getText()));
 						CineEL c=new CineEL();
 						c.setIdCine(cboCine.getSelectedIndex());
-					s.setCine(c);
-					s.setEstado(chkEstado.isSelected());
+					s.setCine(c);								
+					s.setEstado(chkEstado.isSelected());											
+					
 					boolean band=SalaDL.Instancia().InsertarSala(s);
 					if(band==false){
 						JOptionPane.showMessageDialog(null,"Error al insertar","Error",JOptionPane.ERROR_MESSAGE);
@@ -131,6 +129,7 @@ public class frmSala extends JInternalFrame {
 						txtNombreCine.setText("");
 						txtButacasCine.setText("");
 						txtFilasCine.setText("");
+						chkEstado.setSelected(false);
 					}
 				}catch(Exception ex){
 					ex.printStackTrace();
@@ -153,8 +152,12 @@ public class frmSala extends JInternalFrame {
 		});
 		btnCancelar.setBounds(265, 277, 89, 23);
 		getContentPane().add(btnCancelar);
-
 		
+		cboCine = new JComboBox();
+		cboCine.setBounds(154, 187, 200, 20);
+		getContentPane().add(cboCine);
+
+		//chkEstado.setSelected(true);
 		LlenarComboCine();
 	}
 }
