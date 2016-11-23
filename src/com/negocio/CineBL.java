@@ -20,9 +20,17 @@ public class CineBL {
 		}
 		//endSingleton
 		
-		public ArrayList<CineEL> ListarCiudad(int idCiudad) throws Exception{
+		public ArrayList<CineEL> ListarCine(int idCiudad) throws Exception{
 			try{				
 				return CineDL.Instancia().ListarCine(idCiudad);
+			}catch(Exception e){
+				throw e;
+			}
+		}
+		
+		public ArrayList<CineEL> ListarCboCine() throws Exception{
+			try{				
+				return CineDL.Instancia().ListarCboCine();
 			}catch(Exception e){
 				throw e;
 			}
