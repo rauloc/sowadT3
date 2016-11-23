@@ -50,6 +50,32 @@ public class CineDL {
 		return lista;		
 	}
 	
+	public ArrayList<CineEL> ListarCboCine() throws Exception{
+		Connection cn = null;
+		ArrayList<CineEL> lista = new ArrayList<CineEL>();
+		try {
+			cn = Conexion.Instancia().Conectar();
+			CallableStatement cst = cn.prepareCall("{call spListarCboCine()}");			
+			ResultSet rs = cst.executeQuery();
+			while (rs.next()) {
+				CineEL c = new CineEL();
+				c.setIdCine(rs.getInt("idCine"));		
+					//CiudadEL u=new CiudadEL();
+				//	u.setIdCiudad(rs.getInt("idCiudad"));
+				//c.setCiudad(u);	
+				c.setNombreCine(rs.getString("nombreCine"));
+				//c.setDireccionCine(rs.getString("direccionCine"));
+				lista.add(c);
+			}			
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			cn.close();
+		}
+		return lista;		
+	}
+	
+	
 	public boolean InsertarCine(CineEL d) throws Exception{
 		Connection cn = Conexion.Instancia().Conectar();
 		try {
