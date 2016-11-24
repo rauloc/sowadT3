@@ -25,9 +25,9 @@ public class SalaDL {
 						"{call sp_InsertarSala(?,?,?,?,?)}");			
 				cst.setString(1, d.getNombre());
 				cst.setInt(2, d.getFilas());
-				cst.setInt(3, d.getButacasporfila());
-				cst.setInt(4,d.getCine().getIdCine());
-				cst.setBoolean(5,d.isEstado());
+				cst.setInt(3, d.getButacasporfila());				
+				cst.setBoolean(4,d.isEstado());
+				cst.setInt(5,d.getCine().getIdCine());
 				cst.executeUpdate();
 				return true;
 			} catch (Exception e) {

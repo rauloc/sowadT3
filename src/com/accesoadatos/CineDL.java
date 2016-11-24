@@ -59,8 +59,12 @@ public class CineDL {
 			ResultSet rs = cst.executeQuery();
 			while (rs.next()) {
 				CineEL c = new CineEL();
-				c.setIdCine(rs.getInt("idCine"));						
+				c.setIdCine(rs.getInt("idCine"));	
+					//CiudadEL u=new CiudadEL();
+					//u.setIdCiudad(rs.getInt("idCiudad"));
+				//c.setCiudad(u);
 				c.setNombreCine(rs.getString("nombreCine"));
+				//c.setDireccionCine(rs.getString(""));
 				lista.add(c);
 			}			
 		} catch (Exception e) {
