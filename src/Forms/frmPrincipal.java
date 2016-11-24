@@ -74,6 +74,11 @@ public class frmPrincipal extends JFrame {
 		menuBar.add(mnRegistro);
 		
 		JMenuItem mntmCiudades = new JMenuItem("Ciudades");
+		mntmCiudades.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		mnRegistro.add(mntmCiudades);
 		
 		JMenuItem mntmCines = new JMenuItem("Cines");
