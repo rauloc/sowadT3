@@ -28,15 +28,20 @@ public class frmSala extends JInternalFrame {
 	private JTextField txtButacasCine;
 	private JComboBox cboCine;
 	private JCheckBox chkEstado;
+	private JComboBox cboID;
 	
 		//llenar comboCine
 		private void LlenarComboCine(){
 			try {
 				DefaultComboBoxModel x = new DefaultComboBoxModel();
 				cboCine.setModel(x);
+				DefaultComboBoxModel y = new DefaultComboBoxModel();
+				cboID.setModel(y);
+				
 				ArrayList<CineEL> lista = CineBL.Instancia().ListarCboCine();
 				for(int i=0;i<lista.size();i++){
-					x.addElement(lista.get(i));
+					x.addElement(lista.get(i).getNombreCine());
+					y.addElement(lista.get(i).getIdCine());
 				}
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null,
@@ -64,6 +69,7 @@ public class frmSala extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public frmSala() {
+		//setClosed(true);
 		setBounds(100, 100, 450, 364);
 		getContentPane().setLayout(null);
 		
@@ -115,9 +121,17 @@ public class frmSala extends JInternalFrame {
 					s.setNombre(txtNombreCine.getText());
 					s.setFilas(Integer.parseInt(txtFilasCine.getText()));
 					s.setButacasporfila(Integer.parseInt(txtButacasCine.getText()));
-						CineEL c=new CineEL();
-						c.setIdCine(cboCine.getSelectedIndex());
-					s.setCine(c);								
+					
+						
+						int index=cboCine.getSelectedIndex();
+						cboID.setSelectedIndex(index);
+						String valorindex=cboID.getSelectedItem().toString();
+						
+						CineEL c=new CineEL();						
+						c.setIdCine(Integer.parseInt(valorindex));
+						
+					s.setCine(c);
+					//checkbox
 					s.setEstado(chkEstado.isSelected());											
 					
 					boolean band=SalaDL.Instancia().InsertarSala(s);
@@ -154,8 +168,13 @@ public class frmSala extends JInternalFrame {
 		getContentPane().add(btnCancelar);
 		
 		cboCine = new JComboBox();
+	
 		cboCine.setBounds(154, 187, 200, 20);
 		getContentPane().add(cboCine);
+		
+		cboID = new JComboBox();
+		cboID.setBounds(230, 187, 75, 20);
+		getContentPane().add(cboID);
 
 		//chkEstado.setSelected(true);
 		LlenarComboCine();
