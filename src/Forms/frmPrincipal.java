@@ -76,12 +76,21 @@ public class frmPrincipal extends JFrame {
 		JMenuItem mntmCiudades = new JMenuItem("Ciudades");
 		mntmCiudades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				frmCiudad c=new frmCiudad();
+				dspContenedor.add(c);
+				c.setVisible(true);
 			}
 		});
 		mnRegistro.add(mntmCiudades);
 		
 		JMenuItem mntmCines = new JMenuItem("Cines");
+		mntmCines.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmCine c=new frmCine();
+				dspContenedor.add(c);
+				c.setVisible(true);
+			}
+		});
 		mnRegistro.add(mntmCines);
 		
 		JMenuItem mntmSalas = new JMenuItem("Salas");

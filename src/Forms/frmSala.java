@@ -121,8 +121,7 @@ public class frmSala extends JInternalFrame {
 					s.setNombre(txtNombreCine.getText());
 					s.setFilas(Integer.parseInt(txtFilasCine.getText()));
 					s.setButacasporfila(Integer.parseInt(txtButacasCine.getText()));
-					
-						
+											
 						int index=cboCine.getSelectedIndex();
 						cboID.setSelectedIndex(index);
 						String valorindex=cboID.getSelectedItem().toString();
