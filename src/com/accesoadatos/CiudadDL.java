@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import com.entidades.CiudadEL;
+import com.entidades.SalaEL;
 
 public class CiudadDL {
 
@@ -40,6 +41,19 @@ public class CiudadDL {
 				cn.close();
 			}
 			return lista;		
+		}
+		
+		public boolean InsertarCiudad(CiudadEL d) throws Exception{
+			Connection cn = Conexion.Instancia().Conectar();
+			try {
+				CallableStatement cst = cn.prepareCall(
+						"{call sp_InsertarCiudad(?)}");			
+				cst.setString(1, d.getNombre());
+				cst.executeUpdate();
+				return true;
+			} catch (Exception e) {
+				throw e;
+			}finally{cn.close();}		
 		}
 	
 	

@@ -2,10 +2,6 @@ package com.accesoadatos;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-
-import com.entidades.CineEL;
 import com.entidades.SalaEL;
 
 public class SalaDL {
@@ -22,29 +18,21 @@ public class SalaDL {
 		}
 		// endSingleton
 	
-		
-		public ArrayList<SalaEL> ListarSala(int idCine) throws Exception{
-			Connection cn = null;
-			ArrayList<SalaEL> lista = new ArrayList<SalaEL>();
+		public boolean InsertarSala(SalaEL d) throws Exception{
+			Connection cn = Conexion.Instancia().Conectar();
 			try {
-				cn = Conexion.Instancia().Conectar();
-				CallableStatement cst = cn.prepareCall("{call spListarSala(?)}");
-				cst.setInt(1, idCine);
-				ResultSet rs = cst.executeQuery();
-				while (rs.next()) {
-					SalaEL c = new SalaEL();
-					c.setIdSala(rs.getInt("idSala"));
-						CineEL u=new CineEL();
-						u.setIdCine(rs.getInt("idCine"));
-					c.setCine(u);	
-					c.setNroSala(rs.getInt("nroSala"));
-					lista.add(c);
-				}			
+				CallableStatement cst = cn.prepareCall(
+						"{call sp_InsertarSala(?,?,?,?,?)}");			
+				cst.setString(1, d.getNombre());
+				cst.setInt(2, d.getFilas());
+				cst.setInt(3, d.getButacasporfila());				
+				cst.setBoolean(4,d.isEstado());
+				cst.setInt(5,d.getCine().getIdCine());
+				cst.executeUpdate();
+				return true;
 			} catch (Exception e) {
 				throw e;
-			} finally {
-				cn.close();
-			}
-			return lista;		
+			}finally{cn.close();}		
 		}
+		
 }

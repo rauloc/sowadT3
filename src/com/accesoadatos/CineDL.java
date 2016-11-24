@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import com.entidades.CineEL;
 import com.entidades.CiudadEL;
+import com.entidades.SalaEL;
 
 public class CineDL {
 
@@ -48,4 +49,46 @@ public class CineDL {
 		}
 		return lista;		
 	}
+	
+	public ArrayList<CineEL> ListarCboCine() throws Exception{
+		Connection cn = null;
+		ArrayList<CineEL> lista = new ArrayList<CineEL>();
+		try {
+			cn = Conexion.Instancia().Conectar();
+			CallableStatement cst = cn.prepareCall("{call spListarCboCine()}");			
+			ResultSet rs = cst.executeQuery();
+			while (rs.next()) {
+				CineEL c = new CineEL();
+				c.setIdCine(rs.getInt("idCine"));	
+					//CiudadEL u=new CiudadEL();
+					//u.setIdCiudad(rs.getInt("idCiudad"));
+				//c.setCiudad(u);
+				c.setNombreCine(rs.getString("nombreCine"));
+				//c.setDireccionCine(rs.getString(""));
+				lista.add(c);
+			}			
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			cn.close();
+		}
+		return lista;		
+	}
+	
+	
+	public boolean InsertarCine(CineEL d) throws Exception{
+		Connection cn = Conexion.Instancia().Conectar();
+		try {
+			CallableStatement cst = cn.prepareCall(
+					"{call sp_InsertarCine(?,?,?)}");			
+			cst.setInt(1, d.getCiudad().getIdCiudad());
+			cst.setString(2, d.getNombreCine());
+			cst.setString(3, d.getDireccionCine());			
+			cst.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			throw e;
+		}finally{cn.close();}		
+	}
+	
 }
