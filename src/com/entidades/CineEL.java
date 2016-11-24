@@ -30,6 +30,11 @@ public class CineEL {
 	public void setCiudad(CiudadEL ciudad) {
 		this.ciudad = ciudad;
 	}
+	@Override
+	public String toString() {
+		return "CineEL [idCine=" + idCine + ", ciudad=" + ciudad + ", nombreCine=" + nombreCine + ", direccionCine="
+				+ direccionCine + "]";
+	}
 	
 	
 

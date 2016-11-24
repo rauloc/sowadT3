@@ -45,6 +45,12 @@ public class SalaEL {
 		Estado = estado;
 	}
 	
+	@Override
+	public String toString() {
+		return "SalaEL [idSala=" + idSala + ", Nombre=" + Nombre + ", Filas=" + Filas + ", Butacasporfila="
+				+ Butacasporfila + ", cine=" + cine + ", Estado=" + Estado + "]";
+	}
+	
 	
 	
 
