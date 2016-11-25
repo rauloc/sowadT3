@@ -2,6 +2,8 @@ package com.accesoadatos;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.ResultSet;
+
 import com.entidades.SalaEL;
 
 public class SalaDL {
@@ -33,6 +35,30 @@ public class SalaDL {
 			} catch (Exception e) {
 				throw e;
 			}finally{cn.close();}		
+		}
+		
+		public SalaEL BuscarSala(int IdSala) throws Exception{
+			Connection cn = null;
+			SalaEL s = null;
+			try {
+				cn = Conexion.Instancia().Conectar();
+				CallableStatement cst = cn.prepareCall("{call sp_BuscarSala(?)}");
+				cst.setInt(1, IdSala);
+				ResultSet rs = cst.executeQuery();
+				while (rs.next())
+		        {
+		            s = new SalaEL();
+		            s.setIdSala(rs.getInt("IdSala"));
+		            s.setNombre(rs.getString("Nombre"));
+		            s.setFilas(rs.getInt("Filas"));
+		            s.setButacasporfila(rs.getInt("Butacasporfila"));
+		        }
+			} catch (Exception e) {
+				throw e;
+			}finally {
+				cn.close();
+			}
+			return s;
 		}
 		
 }

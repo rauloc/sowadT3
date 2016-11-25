@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import com.entidades.CineEL;
 import com.entidades.PeliculaEL;
+import com.entidades.SalaEL;
 
 public class PeliculaDL {
 	// Singleton
@@ -60,6 +61,32 @@ public class PeliculaDL {
 			} catch (Exception e) {
 				throw e;
 			}finally{cn.close();}		
+		}
+		
+		public PeliculaEL BuscarPelicula(int IdPelicula) throws Exception{
+			Connection cn = null;
+			PeliculaEL p = null;
+			try {
+				cn = Conexion.Instancia().Conectar();
+				CallableStatement cst = cn.prepareCall("{call sp_BuscarPelicula(?)}");
+				cst.setInt(1, IdPelicula);
+				ResultSet rs = cst.executeQuery();
+				while (rs.next())
+		        {
+		            p = new PeliculaEL();
+		            p.setIdPelicula(rs.getInt("IdPelicula"));
+		            p.setTitulo(rs.getString("Titulo"));
+		            p.setDescripcion(rs.getString("Descripcion"));
+		            p.setGenero(rs.getString("Genero"));
+		            p.setImagen(rs.getString("Imagen"));
+		            p.setIdVideo(rs.getString("IdVideo"));
+		        }
+			} catch (Exception e) {
+				throw e;
+			}finally {
+				cn.close();
+			}
+			return p;
 		}
 
 }

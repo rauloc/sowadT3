@@ -14,14 +14,13 @@ public class Conexion {
 				return _Instancia;
 			}
 	//endSingleton
-			//arredlando 
+			
 			public Connection Conectar() throws Exception{
 				Connection cn = null;
 				try {
 					Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 					/*cn = DriverManager.getConnection("jdbc:sqlserver://.;"+
 							"databaseName=BD_Cine", "sa", "123456");*/
-					
 					cn = DriverManager.getConnection("jdbc:sqlserver://sowad4471.cloudapp.net:1433;"+
 					"databaseName=bdcinema", "sa", "123456T2sowad");
 					
