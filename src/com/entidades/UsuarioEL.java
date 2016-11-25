@@ -7,7 +7,6 @@ public class UsuarioEL {
 	private String Nombre;
 	private String Apellido;
 	private int DNI;
-//	private Date FechaAlta;
 	private String TipoUsuario;
 	private boolean Estado;
 	
