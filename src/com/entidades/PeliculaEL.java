@@ -1,7 +1,7 @@
 package com.entidades;
 
 public class PeliculaEL {
-	
+
 	private String Titulo;
 	private String Descripcion;
 	private String Genero;
@@ -38,7 +38,5 @@ public class PeliculaEL {
 	public void setEstado(boolean estado) {
 		Estado = estado;
 	}
-	
-	
 
 }
