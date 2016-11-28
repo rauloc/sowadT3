@@ -1,13 +1,19 @@
 package com.entidades;
 
 public class PeliculaEL {
-
+	private int IdPelicula;
 	private String Titulo;
 	private String Descripcion;
 	private String Genero;
 	private String Imagen;
 	private boolean Estado;
 	
+	public int getIdPelicula() {
+		return IdPelicula;
+	}
+	public void setIdPelicula(int idPelicula) {
+		IdPelicula = idPelicula;
+	}
 	public String getTitulo() {
 		return Titulo;
 	}
