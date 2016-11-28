@@ -6,6 +6,14 @@ public class PeliculaEL {
 	private String Descripcion;
 	private String Genero;
 	private String Imagen;
+	private String IdVideo;
+	
+	public String getIdVideo() {
+		return IdVideo;
+	}
+	public void setIdVideo(String idVideo) {
+		IdVideo = idVideo;
+	}
 	private boolean Estado;
 	
 	public int getIdPelicula() {
