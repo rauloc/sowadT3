@@ -24,28 +24,80 @@ public class FuncionesDL {
 			return _Instancia;
 		}
 	// endSingleton
-		public Hashtable ListarFuncionesPelicula(CineEL cine) throws Exception{
+		public Hashtable ListarFuncionesPelicula(int idpe) throws Exception{
 			Connection cn = null;
 			Hashtable ListaRTA = new Hashtable();
 	        FuncionesEL aux = null;
 	        try {
 	        	cn = Conexion.Instancia().Conectar();
-				CallableStatement cst = cn.prepareCall("{call sp_BuscarSala(?)}");
-				cst.setInt(1, cine.getIdCine());
+				CallableStatement cst = cn.prepareCall("{call sp_ListarFuncion(?)}");
+				cst.setInt(1, idpe);
 				ResultSet rs = cst.executeQuery();
 				 while (rs.next())
 			        {
-					 SalaDL a=null;
-			            SalaEL ss = SalaDL.Instancia().BuscarSala(rs.getInt("IdSala"));
-			            PeliculaEL  p = PeliculaDL.Instancia().BuscarPelicula(rs.getInt("IdPelicula"));
-			            HorarioEL h =(HorarioEL) HorarioDL.Instancia().BuscarHorario(rs.getTime("Horario")); 
-			           
-			           // aux = new FuncionesEL(rs.getInt("IdFuncion"), oSala, oPelicula, oHorario, Resultado.getDate("Fecha"));*/
+					// SalaDL a=null;
+					 	aux = new FuncionesEL();
+					 	aux.setIdFuncion(rs.getInt("idFuncion"));
+					 	SalaEL s=new SalaEL();
+					 	s.setIdSala(rs.getInt("IdSala"));
+					 	s.setNombre(rs.getString("Nombre"));
+					 	s.setFilas(rs.getInt("Filas"));
+					 	s.setButacasporfila(rs.getInt("Butacasporfila"));
+					 	aux.setSala(s);
+					 	PeliculaEL p=new PeliculaEL();
+					 	p.setTitulo(rs.getString("Titulo"));
+					 	p.setDescripcion(rs.getString("Descripcion"));
+					 	p.setGenero(rs.getString("Genero"));
+					 	aux.setPelicula(p);
+					 	aux.setFecha(rs.getDate("Fecha"));
+					 	HorarioEL h=new HorarioEL();
+					 	h.setHorario(rs.getTime("Horario"));
+					 	h.setPrecio(rs.getDouble("Precio"));
+					 	aux.setHorario(h);      
 			            ListaRTA.put(aux.getIdFuncion(), aux);
 			        }
 			} catch (Exception e) {
-				// TODO: handle exception
+				throw e;
+			}finally {
+				cn.close();
 			}
 	        return ListaRTA;
 		}
+		public FuncionesEL BuscarFuncion(int IdFuncion) throws Exception
+	    {
+			Connection cn = null;
+	        FuncionesEL aux = null;
+	        try {
+	        	cn = Conexion.Instancia().Conectar();
+				CallableStatement cst = cn.prepareCall("{call sp_BuscarFuncion(?)}");
+				cst.setInt(1, IdFuncion);
+				ResultSet rs = cst.executeQuery();
+				 while (rs.next())
+			        {
+					 aux = new FuncionesEL();
+					 	aux.setIdFuncion(rs.getInt("idFuncion"));
+					 	SalaEL s=new SalaEL();
+					 	s.setIdSala(rs.getInt("IdSala"));
+					 	s.setNombre(rs.getString("Nombre"));
+					 	s.setFilas(rs.getInt("Filas"));
+					 	s.setButacasporfila(rs.getInt("Butacasporfila"));
+					 	aux.setSala(s);
+					 	PeliculaEL p=new PeliculaEL();
+					 	p.setTitulo(rs.getString("Titulo"));
+					 	p.setDescripcion(rs.getString("Descripcion"));
+					 	p.setGenero(rs.getString("Genero"));
+					 	aux.setPelicula(p);
+					 	aux.setFecha(rs.getDate("Fecha"));
+					 	HorarioEL h=new HorarioEL();
+					 	h.setHorario(rs.getTime("Horario"));
+					 	h.setPrecio(rs.getDouble("Precio"));
+					 	aux.setHorario(h);	   
+			        }
+			} catch (Exception e) {
+				throw e;
+			}finally {
+				cn.close();
+			}
+	        return aux;
+	    }
 }
