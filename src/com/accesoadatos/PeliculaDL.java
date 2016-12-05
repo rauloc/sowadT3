@@ -4,6 +4,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import com.entidades.PeliculaEL;
 
 public class PeliculaDL {
@@ -147,5 +148,29 @@ public class PeliculaDL {
 			}
 			return p;
 		}
-
+		//Listado de peliculas Ramos
+		
+		public Hashtable ListadoPelicula() throws  Exception{
+			Connection cn = null;
+			Hashtable ListaRTA = new Hashtable();
+	        PeliculaEL aux = null;
+	        try {
+	        	cn = Conexion.Instancia().Conectar();
+				CallableStatement cst = cn.prepareCall("{call spListadoPeliculas()}");
+				ResultSet rs = cst.executeQuery();
+				 while (rs.next())
+			        {
+			            aux = new PeliculaEL();
+			            aux.setIdPelicula(rs.getInt("IdPelicula"));
+			            aux.setTitulo(rs.getString("Titulo"));
+			            //aux.setDescripcion(rs.getString("Descripcion"));
+			            aux.setGenero(rs.getString("Genero"));
+			            ListaRTA.put(aux.getIdPelicula(), aux);
+			        }
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+	        return ListaRTA;
+		}
+		//
 }
