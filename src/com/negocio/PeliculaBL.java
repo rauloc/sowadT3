@@ -1,7 +1,12 @@
 package com.negocio;
 
+import java.util.ArrayList;
+import java.util.Hashtable;
+
+import com.accesoadatos.CineDL;
 import com.accesoadatos.PeliculaDL;
 import com.accesoadatos.UsuarioDL;
+import com.entidades.CineEL;
 import com.entidades.PeliculaEL;
 import com.entidades.UsuarioEL;
 
@@ -25,4 +30,19 @@ public class PeliculaBL {
 			throw e;
 		}
 	}
+	public Hashtable ListadoPelicula() throws Exception{
+		try {
+			Hashtable u=PeliculaDL.Instancia().ListadoPelicula();
+			return u;
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+	/*public ArrayList<PeliculaEL> ListadoPelicula() throws Exception{
+		try{				
+			return PeliculaDL.Instancia().ListadoPelicula();
+		}catch(Exception e){
+			throw e;
+		}
+	}*/
 }
