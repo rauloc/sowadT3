@@ -5,8 +5,9 @@ public class PeliculaEL {
 	private String Titulo;
 	private String Descripcion;
 	private String Genero;
-	private String Imagen;
+	private byte[] Imagen;
 	private String IdVideo;
+	private boolean Estado;
 	
 	public String getIdVideo() {
 		return IdVideo;
@@ -14,7 +15,7 @@ public class PeliculaEL {
 	public void setIdVideo(String idVideo) {
 		IdVideo = idVideo;
 	}
-	private boolean Estado;
+	
 	
 	public int getIdPelicula() {
 		return IdPelicula;
@@ -40,17 +41,19 @@ public class PeliculaEL {
 	public void setGenero(String genero) {
 		Genero = genero;
 	}
-	public String getImagen() {
-		return Imagen;
-	}
-	public void setImagen(String imagen) {
-		Imagen = imagen;
-	}
+	
 	public boolean isEstado() {
 		return Estado;
 	}
 	public void setEstado(boolean estado) {
 		Estado = estado;
 	}
+	public byte[] getImagen() {
+		return Imagen;
+	}
+	public void setImagen(byte[] imagen) {
+		Imagen = imagen;
+	}
 
+	
 }
