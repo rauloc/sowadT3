@@ -43,7 +43,7 @@ public class frmPrincipal extends JFrame {
 	 */
 	public frmPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 722, 415);
+		setBounds(100, 100, 922, 615);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -52,6 +52,13 @@ public class frmPrincipal extends JFrame {
 		menuBar.add(mnMantenedores);
 		
 		JMenuItem mntmPelicula = new JMenuItem("Pelicula");
+		mntmPelicula.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmPelicula p=new frmPelicula();
+				dspContenedor.add(p);
+				p.setVisible(true);
+			}
+		});
 		mnMantenedores.add(mntmPelicula);
 		
 		JMenuItem mntmUsuario = new JMenuItem("Usuario");
