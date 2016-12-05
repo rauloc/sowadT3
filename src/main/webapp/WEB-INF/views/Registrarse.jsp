@@ -12,6 +12,7 @@
 	<script src="<c:url value="/resources/diseño/js/jquery.form.js"/>" type="text/javascript"></script>
 </head>
 <body>
+<div id="popup" style="top:0px;">
 <div style="text-align:center; width:100%;">
 <h2><span>Registrarme</span></h2>
 </div>
@@ -43,6 +44,7 @@
                       </p>
                      <div id="ajaxRegistro2"></div>
                 </frm:form>
+                </div>
 <script>
 $(document).ready(function(){
 $('#formRegistro').ajaxForm({

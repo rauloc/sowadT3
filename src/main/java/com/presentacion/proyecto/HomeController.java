@@ -18,7 +18,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.accesoadatos.ButacaDL;
+import com.entidades.ButacasEL;
+import com.entidades.FuncionesEL;
+import com.entidades.PeliculaEL;
+import com.entidades.ReservasEL;
 import com.entidades.UsuarioEL;
+import com.negocio.ButacaBL;
+import com.negocio.FuncionBL;
+import com.negocio.PeliculaBL;
+import com.negocio.ReservaBL;
 import com.negocio.UsuarioBL;
 
 /**
@@ -61,9 +70,43 @@ public class HomeController {
 			u=UsuarioBL.Instancia().VerificarAcceso(_Usuario, _Pass);
 			HttpSession ses = request.getSession();
 			ses.setAttribute("usuario", u);
-			return "Principal";
+			if(u.getTipoUsuario().equals("Espectador")){
+				return "Principal";}
+				
+			else
+				return "Error";
 		} catch (Exception e) {
 			return "Error";
 		} 
+	}
+	@RequestMapping(value = "/Reserva", method = RequestMethod.GET)
+	public ModelAndView EReserva() {
+		try {
+			ModelAndView m = new ModelAndView("Reserva");
+			return m;
+		} catch (Exception e) {
+			return new ModelAndView("Principal", "command",null);
+		}
+		
+	}
+	
+	@RequestMapping(value = "/Sala", method = RequestMethod.GET)
+	public ModelAndView Sala() {
+		try {
+			ModelAndView m = new ModelAndView("Sala");
+			return m;
+		} catch (Exception e) {
+			return new ModelAndView("Principal", "command",null);
+		}	
+	}
+	@RequestMapping(value = "/Guardar", method = RequestMethod.GET)
+	public ModelAndView Guardar() {
+		try {
+			ModelAndView m = new ModelAndView("Guarda");
+			return m;
+		} catch (Exception e) {
+			return new ModelAndView("Principal", "command",null);
+		}
+		
 	}
 }
