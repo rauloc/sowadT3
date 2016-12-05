@@ -4,10 +4,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
-import com.entidades.CineEL;
 import com.entidades.PeliculaEL;
-import com.entidades.SalaEL;
 
 public class PeliculaDL {
 	// Singleton
@@ -31,10 +28,11 @@ public class PeliculaDL {
 				ResultSet rs = cst.executeQuery();
 				while (rs.next()) {
 					PeliculaEL p = new PeliculaEL();
+					p.setIdPelicula(rs.getInt("IdPelicula"));
 					p.setTitulo(rs.getString("Titulo"));
 					p.setDescripcion(rs.getString("Descripcion"));
 					p.setGenero(rs.getString("Genero"));
-					p.setImagen(rs.getString("Imagen"));
+					p.setImagen(rs.getBytes("Imagen"));
 					p.setEstado(rs.getBoolean("Estado"));
 					lista.add(p);
 				}			
@@ -54,7 +52,7 @@ public class PeliculaDL {
 				cst.setString(1, p.getTitulo());
 				cst.setString(2, p.getDescripcion());
 				cst.setString(3, p.getGenero());
-				cst.setString(4, p.getImagen());
+				cst.setBytes(4, p.getImagen());
 				cst.setBoolean(5,p.isEstado());
 				cst.executeUpdate();
 				return true;
@@ -62,6 +60,67 @@ public class PeliculaDL {
 				throw e;
 			}finally{cn.close();}		
 		}
+		
+		public boolean ModificarPelicula(PeliculaEL p) throws Exception {
+			Connection connection = Conexion.Instancia().Conectar();
+			try {
+				CallableStatement cst = connection.prepareCall("{call ModificarPelicula1(?,?,?,?,?,?)}");
+				cst.setInt(1, p.getIdPelicula());
+				cst.setString(2,p.getTitulo());
+				cst.setString(3,p.getDescripcion());
+				cst.setString(4,p.getGenero());
+				cst.setBytes(5, p.getImagen());				
+				cst.setBoolean(6,p.isEstado());
+				int i = cst.executeUpdate();
+				if (i < 0)
+					return true;
+
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				connection.close();
+			}
+			return false;
+		}
+ 
+		public boolean ModificarPelicula2(PeliculaEL p) throws Exception {
+			Connection connection = Conexion.Instancia().Conectar();
+			try {
+				CallableStatement cst = connection.prepareCall("{call ModificarPelicula2(?,?,?,?,?)}");
+				cst.setInt(1, p.getIdPelicula());
+				cst.setString(2,p.getTitulo());
+				cst.setString(3,p.getDescripcion());
+				cst.setString(4,p.getGenero());					
+				cst.setBoolean(5,p.isEstado());
+				int i = cst.executeUpdate();
+				if (i < 0)
+					return true;
+
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				connection.close();
+			}
+			return false;
+		}
+		
+		public boolean eliminarPelicula(int IdPelicula) throws Exception {
+			Connection connection = Conexion.Instancia().Conectar();
+			try {
+				CallableStatement cst = connection.prepareCall("{call EliminarPelicula(?)}");
+				cst.setInt(1, IdPelicula);							
+				int i = cst.executeUpdate();
+				if (i < 0)
+					return true;
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				connection.close();
+			}
+			return false;
+		}
+		
+		
 		
 		public PeliculaEL BuscarPelicula(int IdPelicula) throws Exception{
 			Connection cn = null;
@@ -78,7 +137,7 @@ public class PeliculaDL {
 		            p.setTitulo(rs.getString("Titulo"));
 		            p.setDescripcion(rs.getString("Descripcion"));
 		            p.setGenero(rs.getString("Genero"));
-		            p.setImagen(rs.getString("Imagen"));
+		            p.setImagen(rs.getBytes("Imagen"));
 		            p.setIdVideo(rs.getString("IdVideo"));
 		        }
 			} catch (Exception e) {
