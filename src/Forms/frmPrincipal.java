@@ -62,6 +62,13 @@ public class frmPrincipal extends JFrame {
 		mnMantenedores.add(mntmPelicula);
 		
 		JMenuItem mntmUsuario = new JMenuItem("Usuario");
+		mntmUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmUsuario p=new frmUsuario();
+				dspContenedor.add(p);
+				p.setVisible(true);
+			}
+		});
 		mnMantenedores.add(mntmUsuario);
 		
 		JMenu mnProgramacion = new JMenu("Programacion");
