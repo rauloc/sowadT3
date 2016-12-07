@@ -6,6 +6,13 @@ public class ButacasEL {
 	private int Fila;
 	private int Columna;
 	private int Estado;
+	private int f;
+	public int getF() {
+		return f;
+	}
+	public void setF(int f) {
+		this.f = f;
+	}
 	public int getIdButaca() {
 		return IdButaca;
 	}
@@ -37,9 +44,9 @@ public class ButacasEL {
 		Estado = estado;
 	}
 	
-	 public ButacasEL(FuncionesEL oFuncion, int Fila, int Columna)
+	 public ButacasEL(int f, int Fila, int Columna)
 	    {        
-	        setFuncion(oFuncion);
+	        setF(f);
 	        setFila(Fila);
 	        setColumna(Columna);
 	    }

@@ -1,6 +1,7 @@
 package com.entidades;
 
 import java.sql.Date;
+import java.sql.Time;
 
 public class ReservasEL {
 	private int IdReserva;
@@ -14,6 +15,9 @@ public class ReservasEL {
 	private Date Fecha;
 	private int Precio;
 	private int Estado;
+	
+	
+	
 	public int getIdReserva() {
 		return IdReserva;
 	}
@@ -80,5 +84,40 @@ public class ReservasEL {
 	public void setEstado(int estado) {
 		Estado = estado;
 	}
-
+	private Time Horarios;
+	private int Funcionid;
+	private int Salaid;
+	private int Pelucilaid;
+	private int Usuarioid;
+	public int getUsuarioid() {
+		return Usuarioid;
+	}
+	public void setUsuarioid(int usuarioid) {
+		Usuarioid = usuarioid;
+	}
+	public Time getHorarios() {
+		return Horarios;
+	}
+	public void setHorarios(Time horarios) {
+		Horarios = horarios;
+	}
+	public int getFuncionid() {
+		return Funcionid;
+	}
+	public void setFuncionid(int funcionid) {
+		Funcionid = funcionid;
+	}
+	public int getSalaid() {
+		return Salaid;
+	}
+	public void setSalaid(int salaid) {
+		Salaid = salaid;
+	}
+	public int getPelucilaid() {
+		return Pelucilaid;
+	}
+	public void setPelucilaid(int pelucilaid) {
+		Pelucilaid = pelucilaid;
+	}
+	
 }
