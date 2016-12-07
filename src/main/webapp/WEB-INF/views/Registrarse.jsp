@@ -16,7 +16,7 @@
 <div style="text-align:center; width:100%;">
 <h2><span>Registrarme</span></h2>
 </div>
-    <frm:form action="RegistroUsuario" method="post" class="stdform">
+    <frm:form action="${pageContext.request.contextPath}/RegistroUsuario" method="post" class="stdform">
           <p>
              <frm:label path="usuario">Usuario</frm:label>
              <span class="field"><frm:input path="usuario" type="text" class="longinput required" id="usuario" name="usuario"></frm:input></span>

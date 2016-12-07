@@ -13,10 +13,10 @@
     FuncionesEL oFuncion = FuncionBL.Instancia().BuscarFuncion(Integer.parseInt(request.getParameter("idfuncion")));
     int filas = 0;
     int butacas = 0;
-    String titulo = "titulo";
+    //String titulo = "titulo";
     //String poster = "titulo";
-    String descripcion = "titulo";
-    String genero = "titulo";
+    //String descripcion = "titulo";
+    //String genero = "titulo";
     int sala = Integer.parseInt(request.getParameter("idSala"));
     while (eFunciones.hasMoreElements())
     {
@@ -36,7 +36,6 @@
 <body>
 <div class="content">
     <div class="maincontentinner">
-
         <div class="content">
             <div class="contenttitle radiusbottom0">
                 <h2 class="table"><span>Lista de Funciones</span></h2>
@@ -50,13 +49,11 @@
                         <col class="con0">
                         <col class="con1">
                         <col class="con0">
-
                     </colgroup>
                     <thead>
                         <tr>
                             <th class="head1"></th>
                             <%
-
                                 for (int y = 1; y <= butacas; y++)
                                 {
                             %> 
@@ -65,7 +62,6 @@
                         </tr>
                     </thead>                                    
                     <tbody>                                    
-
                         <%
 
                             for (int x = 1; x <= filas; x++)
@@ -77,7 +73,6 @@
                                 <p>Fila <%= x%></p>
                             </td>
                             <%
-
                                 for (int y = 1; y <= butacas; y++)
                                 {
                             %> 
@@ -99,8 +94,6 @@
                             <%}%>
                         </tr> 
                         <%}%>
-
-
                     </tbody>
                 </table>
             </div>
@@ -108,19 +101,16 @@
     </div>
 </div>
 <script>
-    
     $("#asientos").change(function () {
         var items = [];
         var asientos=[];
         $(":checkbox:checked").each( function() {
             var valor=$(this);
             items.push(valor);
-        });
-                
+        });       
         $('.my-new-list').remove();
         $('#reservaAsientos').children().remove();
         $('#selectmostrartasientos').children().remove();
-        
         $.each( items, function(i, l){
             var columna=$(l).val();
             var fila=$(l).attr("id");
@@ -130,11 +120,8 @@
             $('#reservaAsientos').append('<input type="hidden" name="asientoc'+valor+'"  value="'+columna+'" />');
             $('#reservaAsientos').append('<input type="hidden" name="asientof'+valor+'"  value="'+fila+'" />');
             $('#selectmostrartasientos').append('<option> columma= '+columna+' fila= '+fila+'</option>');
-  
         });
-        $('#cantbutacas').attr("value",valor);
-        
-        
+        $('#cantbutacas').attr("value",valor);  
     })    
 </script>            
 </body>

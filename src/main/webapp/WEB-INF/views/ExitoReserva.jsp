@@ -69,8 +69,8 @@
         <div id="headertext">
           <div class="container">
             <div class="headertitle">
-              <h1 class="pagetitle">Bienvenido</h1>
-              <span class="pagedesc">Una forma más facil de reservar tu entrada al cine</span> </div>
+              <h1 class="pagetitle">Gracias</h1>
+              <span class="pagedesc">Tu reserva se registró de manera exitosa</span> </div>
           </div>
         </div>
       </div>
@@ -184,7 +184,7 @@
                   <div class="widget-bottom">
                     <ul>
                       <li id="ts-recent-posts-2" class="widget-container widget_ts_recent_posts">
-                        <h2 class="widget-title"><span> Cine T3</span></h2>
+                        <h2 class="widget-title"><span> Cinema T3</span></h2>
                         <ul class="ts-recent-post-widget">
                           <li>
                             <h3> <a target="_blank" title="Permanent Link to Hello world!" rel="bookmark" href="">Java </a> </h3>
@@ -250,7 +250,7 @@ border:1px solid #ccc;}
                   <div class="widget-bottom">
                     <ul>
                       <li id="text-3" class="widget-container widget_text">
-                        <h2 class="widget-title"><span>Diciembre - 2016</span></h2>
+                        <h2 class="widget-title"><span>facundo sirvent</span></h2>
                         <div class="textwidget">
                           <ul class="sn">
                             <li><a target="_blank"  href=""><span class="icon-img" style="background-image:url(images/twitter.png)"></span></a></li>

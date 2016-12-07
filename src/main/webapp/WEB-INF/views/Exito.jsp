@@ -1,27 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="frm" %>
-<%@page import="com.entidades.*"%>
-<%@page import="com.negocio.*" %>
-<%@page import="java.util.Enumeration"%>
-<%@page import="java.util.Hashtable"%>
-<%@page import="java.util.Base64"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<%
-    Hashtable ListaPeliculas = PeliculaBL.Instancia().ListadoPelicula();
-    Enumeration ePeliculas = ListaPeliculas.elements();
-    HttpSession sesion = request.getSession();
-    Object user=sesion.getAttribute("Logueado");
-    
-%>
 <html>
-
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Cinema T3</title>
-<link media="screen, all" type="text/css" href="<c:url value="/resources/diseño/css/master.css"/>" rel="stylesheet"/>
+	<link media="screen, all" type="text/css" href="<c:url value="/resources/diseño/css/master.css"/>" rel="stylesheet"/>
 	<link  media="screen, all" type="text/css" href="<c:url value="/resources/diseño/css/skeleton.css?ver=3.4.2"/>" rel="stylesheet"/>
 	<link  media="screen, all" type="text/css" href="<c:url value="/resources/diseño/css/style_window.css"/>" rel="stylesheet"/>
 	<link id="googleFonts-css" media="all" type="text/css" href="<c:url value="/resources/diseño/http://fonts.googleapis.com/css?family=Oswald%3A400%2C+300%2C+700&ver=3.4.2"/>" rel="stylesheet">
@@ -38,11 +24,15 @@
 	<script type="text/javascript"  src="<c:url value="/resources/diseño/js/fancy.js"/>"></script> 
 	<script type="text/javascript" src="<c:url value="/resources/diseño/js/function_wizard.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resources/diseño/js/fancyreservas.js"/>"></script>
+
 </head>
 <body>
+
 <div id="bodychild">
   <div id="outercontainer"> 
+    
     <!-- HEADER -->
+    
     <div id="outerheader">
       <div class="header-bglight">
         <header id="top">
@@ -54,8 +44,9 @@
                 <nav id="nav-wrap">
                   <ul id="topnav" class="sf-menu">
                     <li id="menu-item-664" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-664"><a target="_blank" id="userLogueado"></a></li>
-                    <li id="reservas" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-664" ><a target="_blank" id="misreservas" href="#">Mis reservas</a></li>
-                    <li id="login" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-664"><a target="_blank" id="window" class="login" href="${pageContext.request.contextPath}/Inicia">Cerrar Sesión</a></li>
+                    <li id="reservas" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-664" style="display:none"><a target="_blank" id="misreservas" href="#">Mis reservas</a></li>
+                    <li id="login" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-664"><a target="_blank" id="window" class="login" href="${pageContext.request.contextPath}/Inicia">Ingresar</a></li>
+                    <li id="registrarme" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-664"><a target="_blank" id="window" href="${pageContext.request.contextPath}/Registrar">Registrarme</a></li>
                     <li id="" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-664"><a target="_blank"  href="#" id="salir"></a></li>
                   </ul>
                 </nav>
@@ -69,8 +60,8 @@
         <div id="headertext">
           <div class="container">
             <div class="headertitle">
-              <h1 class="pagetitle">Bienvenido</h1>
-              <span class="pagedesc">Una forma más facil de reservar tu entrada al cine</span> </div>
+              <h1 class="pagetitle">Éxito</h1>
+              <span class="pagedesc">Registro exitoso, ahora inicie sesión por favor. </span> </div>
           </div>
         </div>
       </div>
@@ -122,30 +113,31 @@
               <div class="highlight-content">
                 <div class="highlight-container">
                   <h1>Películas en cartelera</h1>
-                  <p><span></span></p>
+                  <p><span>Es .</span></p>
                 </div>
               </div>
               <div class="separator">
                 <div></div>
               </div>
-				<% while (ePeliculas.hasMoreElements())
-              {
-                    PeliculaEL aux = (PeliculaEL) ePeliculas.nextElement();
+              <% //while (ePeliculas.hasMoreElements())
+              //{
+                    //Pelicula aux = (Pelicula) ePeliculas.nextElement();
               %>
               <div class="boxed-container">
                 <div class="boxed three columns alpha">
                   <div class="boxed-content">
-                 <% byte[] photo = aux.getImagen();
-                 	String bphoto = Base64.getEncoder().encodeToString(photo); %>
-                   <a> <img height="135" src="data:image/png;base64,${bphoto}" alt="" class="imgopacity"></a> 
-                    <h3 class="titleUppercase"><%=aux.getTitulo()%></h3>
+                      <a id="trailer" href="trailer.jsp?idvideo=<%//=aux.getIdVideo() %>"> <img height="135" src="<%//=aux.getPoster()%>" alt="" class="imgopacity"></a>
+                    <h3 class="titleUppercase"><%//=aux.getGenero()%></h3>
                     <div class="sep"><span class="sep2"></span></div>
-                    <p> <%=aux.getGenero()%> </p>
-                    <a  id="reserva" href="${pageContext.request.contextPath}/Reserva?id=<%=aux.getIdPelicula()%>" class="button">Reservar</a></div>
+                    <p> <%//=aux.getTitulo()%> </p>
+                    <a  id="reserva" href="reserva.jsp?id=<%//=aux.getIdPelicula()%>" class="button">Reservar</a></div>
                   <div class="shadow-220"></div>
                 </div>
               </div>
-               <%}%>
+               <%//}%>
+         
+            
+           
               <div class="clear"></div>
               
               <div class="separator line">
@@ -184,7 +176,7 @@
                   <div class="widget-bottom">
                     <ul>
                       <li id="ts-recent-posts-2" class="widget-container widget_ts_recent_posts">
-                        <h2 class="widget-title"><span> Cine T3</span></h2>
+                        <h2 class="widget-title"><span> Cinema T3</span></h2>
                         <ul class="ts-recent-post-widget">
                           <li>
                             <h3> <a target="_blank" title="Permanent Link to Hello world!" rel="bookmark" href="">Java </a> </h3>
@@ -222,7 +214,7 @@
                   <div class="widget-bottom">
                     <ul>
                       <li id="simple-flickr-photos-widget-2" class="widget-container Simple_Flickr_Photos">
-                        <h2 class="widget-title"><span>Cine para todos</span></h2>
+                        <h2 class="widget-title"><span>nazareno oviedo</span></h2>
                         <!--simple flickr photos-->
                         <style type="text/css">
 #flickr {text-align:center;}
@@ -250,7 +242,7 @@ border:1px solid #ccc;}
                   <div class="widget-bottom">
                     <ul>
                       <li id="text-3" class="widget-container widget_text">
-                        <h2 class="widget-title"><span>Diciembre - 2016</span></h2>
+                        <h2 class="widget-title"><span>facundo sirvent</span></h2>
                         <div class="textwidget">
                           <ul class="sn">
                             <li><a target="_blank"  href=""><span class="icon-img" style="background-image:url(images/twitter.png)"></span></a></li>
@@ -276,7 +268,7 @@ border:1px solid #ccc;}
 
 <script type="text/javascript">
 function cargaIndex(){
-	$(document).ready(function() {
+$(document).ready(function() {
     jQuery('.flexslider').flexslider({
           animation: "fade",
 		  animationDuration: 600,
@@ -287,6 +279,7 @@ function cargaIndex(){
 
 $(document).ready(function(){
 	 $('#window').fancy();
+         $('#trailer').fancy();
 	 $('#reserva').function_wizard();
          $('#misreservas').fancyreservas();
 })
@@ -294,14 +287,15 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $('#salir').click(function(e) {
-   var url = $(this).attr('href');
-   $('#bodychild').load(url);
-   e.preventDefault();
+    var url = $(this).attr('href');
+    $('#bodychild').load(url);
+    e.preventDefault();
   })
 });
 }
 cargaIndex();
 
 </script> 
+
 </body>
 </html>

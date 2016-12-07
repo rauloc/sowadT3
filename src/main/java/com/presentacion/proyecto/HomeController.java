@@ -1,7 +1,8 @@
 package com.presentacion.proyecto;
 
+import java.sql.Time;
 import java.text.DateFormat;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -56,7 +57,7 @@ public class HomeController {
 	public ModelAndView RegistroUsuario(@ModelAttribute UsuarioEL p) {
 	    try {
 	    	UsuarioBL.Instancia().InsertarUsuario(p);
-	    	return new ModelAndView("Principal", "command", new UsuarioEL());
+	    	return new ModelAndView("Exito", "command", new UsuarioEL());
 		} catch (Exception e) {
 			return new ModelAndView("redirect:/RegistroUsuario?"+e.getMessage());
 		}
@@ -99,11 +100,42 @@ public class HomeController {
 			return new ModelAndView("Principal", "command",null);
 		}	
 	}
-	@RequestMapping(value = "/Guardar", method = RequestMethod.GET)
-	public ModelAndView Guardar() {
+	@RequestMapping(value = "/Guardar", method = RequestMethod.POST)
+	public ModelAndView Guardar(int ReservaIdFucion, HttpServletRequest request, int cantbutacas) {
 		try {
-			ModelAndView m = new ModelAndView("Guarda");
-			return m;
+			FuncionesEL f=FuncionBL.Instancia().BuscarFuncion(ReservaIdFucion);
+			ReservasEL r=new ReservasEL();
+			Time h=f.getHorario().getHorario();
+			int fu,s,p;
+			fu=f.getIdFuncion();
+			s=f.getSala().getIdSala();
+			p=f.getPelicula().getIdPelicula();
+			r.setFuncionid(fu);
+			r.setSalaid(s);
+			r.setPelucilaid(p);
+			r.setHorarios(h);
+			r.setFuncion(f);
+			HttpSession session = request.getSession();
+			UsuarioEL usuario = (UsuarioEL) session.getAttribute("usuario");
+			r.setUsuarioid(usuario.getIdUsuario());
+			double monto=(f.getHorario().getPrecio()*cantbutacas);
+			r.setPrecio((int)monto);
+			ReservaBL.Instancia().InsertarReserva(r);
+			if (cantbutacas != 0)
+	        {
+	            for (int x = 1; x <= cantbutacas; x++)
+	            {
+	                int columna = Integer.parseInt(request.getParameter("asientoc" + x));
+	                int fila = Integer.parseInt(request.getParameter("asientof" + x));
+	                ButacasEL b = new ButacasEL(fu, fila, columna);
+	                ButacaDL.Instancia().ReservarButaca(b);
+	            }
+	        }
+		//	ModelMap model=new ModelMap();
+		//	model.put("ExitoReserva",pagorealizado);
+			return new ModelAndView("redirect:ExitoReserva");
+			//ModelAndView m = new ModelAndView("ExitoReserva");
+			//return m;
 		} catch (Exception e) {
 			return new ModelAndView("Principal", "command",null);
 		}

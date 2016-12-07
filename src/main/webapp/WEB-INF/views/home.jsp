@@ -1,6 +1,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="frm" %>
 <%@ page session="false" %>
+<%@page import="com.entidades.*"%>
+<%@page import="com.negocio.*" %>
+<%@page import="java.util.Enumeration"%>
+<%@page import="java.util.Hashtable"%>
+<%@page import="java.util.Base64"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%
+    Hashtable ListaPeliculas = PeliculaBL.Instancia().ListadoPelicula();
+    Enumeration ePeliculas = ListaPeliculas.elements();
+    HttpSession sesion = request.getSession();
+    Object user=sesion.getAttribute("Logueado");
+    
+%>
 <html>
 <head>
 <title>Cinema T3</title>
@@ -116,22 +130,24 @@
               <div class="separator">
                 <div></div>
               </div>
-              <% //while (ePeliculas.hasMoreElements())
-              //{
-                    //Pelicula aux = (Pelicula) ePeliculas.nextElement();
+              <% while (ePeliculas.hasMoreElements())
+              {
+                    PeliculaEL aux = (PeliculaEL) ePeliculas.nextElement();
               %>
               <div class="boxed-container">
                 <div class="boxed three columns alpha">
                   <div class="boxed-content">
-                      <a id="trailer" href="trailer.jsp?idvideo=<%//=aux.getIdVideo() %>"> <img height="135" src="<%//=aux.getPoster()%>" alt="" class="imgopacity"></a>
-                    <h3 class="titleUppercase"><%//=aux.getGenero()%></h3>
+                 <% byte[] photo = aux.getImagen();
+                 	String bphoto = Base64.getEncoder().encodeToString(photo); %>
+                   <a> <img height="135" src="data:image/png;base64,${bphoto}" alt="" class="imgopacity"></a> 
+                    <h3 class="titleUppercase"><%=aux.getTitulo()%></h3>
                     <div class="sep"><span class="sep2"></span></div>
-                    <p> <%//=aux.getTitulo()%> </p>
-                    <a  id="reserva" href="reserva.jsp?id=<%//=aux.getIdPelicula()%>" class="button">Reservar</a></div>
+                    <p> <%=aux.getGenero()%> </p>
+                    <a  id="reserva" href="${pageContext.request.contextPath}/Inicia" class="button">Reservar</a></div>
                   <div class="shadow-220"></div>
                 </div>
               </div>
-               <%//}%>
+               <%}%>
          
             
            

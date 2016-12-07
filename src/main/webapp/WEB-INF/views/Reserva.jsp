@@ -44,7 +44,7 @@
                 <form  method="post"  id="formAjaxSala" action="${pageContext.request.contextPath}/Sala" class="stdform stdform2" style="position:le; height:600px !important">
                     <div class="wizard" id="wizard">
                         <ul class="hormenu">
-                            <li> <a href="#wiz1step1"> <span class="h2">PASO 1</span> <span class="dot"><span></span></span> <span class="label">SELECCIONAR FUNCION</span> </a> </li>
+                            <li> <a href="#wiz1step1"> <span class="h2">PASO 1</span> <span class="dot"><span></span></span> <span class="label">SELECCIONAR HORARIO</span> </a> </li>
                             <li> <a href="#wiz1step2"> <span class="h2">PASO 2</span> <span class="dot"><span></span></span> <span class="label">SELECCIONAR BUTACA</span> </a> </li>
                             <li> <a href="#wiz1step3"> <span class="h2">PASO 3</span> <span class="dot"><span></span></span> <span class="label">CONFIRMAR RESERVA</span> </a> </li>
                         </ul>
@@ -80,7 +80,6 @@
                                                     <th class="head0">Opcion</th>
                                                 </tr>
                                             </thead>   
-
                                             <tbody>                                
                                                 <% while (eFunciones.hasMoreElements()) {
                                                                 FuncionesEL aux = (FuncionesEL) eFunciones.nextElement();
@@ -109,15 +108,12 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="formwiz" id="wiz1step2">
                             <h2>PASO 2: ELEGIR BUTACA</h2>
                             <br>
                             <div id="ajaxDisplay"></div>
                         </div>
-
                         <div id="wiz1step3">
-
                             <div class="par terms">
                                 <div class="boxed-container">
                                     <div class="boxed three columns alpha" style="float: left;margin-left: 0; width: 570px;">
@@ -142,40 +138,38 @@
                                             <select id="selectmostrartasientos" style="margin-top: -10px;padding: 5px !important; height: 30px;">
                                             </select>
                                         </div>
+                                        <div>
+                                        </div>
                                         <div id="error_reserva"></div>
                                     </div>
                                 </div>
                                 <div style="float:left;width: 390px;">
                                     <div style="height: 183px; margin-bottom: 5px;overflow: hidden;">
-                                        <p><%= descripcion%></p>
+                                        <p><%=descripcion%></p>
                                     </div>
                                     <div>
                                         <h2 style="  font-size: 16px;   left: 42px;  position: relative;   top: 30px;">PASO 3: ¡CONFIRME SU RESERVA!</h2>
-                                        <p style="left: 42px; top: 20px; position: relative;">Indique un nombre para la reserva: </p><input style="margin-left: 42px; margin-top: 15px;" type="text" name="nombreReserva" id="nombreReserva" />
                                         <div id="ajaxReserva"></div>
-                                    </div>
+                                        
+                                    </div>                    
                                 </div>
                             </div>
                         </div>
                         <!--#wiz1step3--> 
-
                     </div>
                     <!--#wizard-->
                     <input type="hidden" id="inputIdSala" name="idSala" value="" />
                     <input type="hidden" name="id" value="<%= idPelicula%>" />
                 </form>
-            </div>  
-            <form id="guardarReserva" action="Guarda.jsp" method="post">
-                <input  type="hidden" name="ReservaNombre" id="ReservaNomGuardarbre" value=""/>
-                <input  type="hidden" name="ReservaIdFucion" id="ReservaIdFucion" value=|"0" />
-                <input  type="hidden" name="ReservaIdCliente" id="ReservaIdCliente" value="0" />
+            </div> 
+            <br>
+            <br> 
+            <form id="guardarReserva" action="${pageContext.request.contextPath}/Guardar" method="post">
+                <input  type="hidden" name="ReservaIdFucion" id="ReservaIdFucion" value="0" />
                 <input   type="hidden" id="cantbutacas" name="cantbutacas"  value="0" />
                 <input type="submit" id="btnGuardarReserva" value="" />
-          
             <div id="reservaAsientos"></div>
-
-
-        </div>
+        	</div>
           </form>
     </div>
     <img class="cargando" style="position:absolute; bottom: 20px;" src="<c:url value="/resources/diseño/images/loader7.gif "/>"/>
@@ -196,7 +190,6 @@
             var step_num= obj.attr('rel'); 
             if (step_num==3)
             {
-      
                 $('.buttonFinish').show();
             }
             else
@@ -230,7 +223,6 @@
             var funcion = $("input[name='idfuncion']:checked").val();
             $('#ReservaIdFucion').attr("value",funcion);
             idsala=$(radio).attr("id");
-            // alert(idsala);
             $('#inputIdSala').attr("value",idsala);
             $('#elegir').click();
             tr=$('#tr'+funcion+'').clone();
@@ -238,9 +230,7 @@
             var nuevo=$(tr).find();
             $('#reserva-confimacion').children().remove();
             $('#reserva-confimacion').append(tr).wrap(table);
-   
         })
-
         var cantidad=$('#loadingFunciones').size();
         for (x=0;x<=cantidad;x++)
         {
@@ -252,9 +242,7 @@
             width: "100%",
             height: "100%"
         }, 1500 );
-
         $('.mostarFuncion').show();
-   
     })
 </script>
 </body>
