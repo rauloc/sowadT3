@@ -163,6 +163,7 @@ public class PeliculaDL {
 			            aux = new PeliculaEL();
 			            aux.setIdPelicula(rs.getInt("IdPelicula"));
 			            aux.setTitulo(rs.getString("Titulo"));
+			            aux.setImagen(rs.getBytes("Imagen"));
 			            //aux.setDescripcion(rs.getString("Descripcion"));
 			            aux.setGenero(rs.getString("Genero"));
 			            ListaRTA.put(aux.getIdPelicula(), aux);

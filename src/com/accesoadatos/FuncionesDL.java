@@ -84,6 +84,7 @@ public class FuncionesDL {
 					 	aux.setSala(s);
 					 	PeliculaEL p=new PeliculaEL();
 					 	p.setTitulo(rs.getString("Titulo"));
+					 	p.setIdPelicula(rs.getInt("IdPelicula"));
 					 	p.setDescripcion(rs.getString("Descripcion"));
 					 	p.setGenero(rs.getString("Genero"));
 					 	aux.setPelicula(p);

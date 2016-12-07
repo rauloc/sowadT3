@@ -19,15 +19,16 @@ public class ButacaDL {
 				return _Instancia;
 			}
 		// endSingleton
-			public void ReservarButaca(ButacasEL b) throws Exception
+			public boolean ReservarButaca(ButacasEL b) throws Exception
 		    {
 				Connection cn = Conexion.Instancia().Conectar();
 				try {
 					CallableStatement cst = cn.prepareCall("{call sp_ReservarAsiento(?,?,?)}");
-					cst.setInt(1, b.getFuncion().getIdFuncion());
+					cst.setInt(1, b.getF());
 					cst.setInt(2, b.getFila());
 					cst.setInt(3, b.getColumna());
 					cst.executeUpdate();
+					return true;
 				} catch (Exception e) {
 					throw e;
 				}finally{cn.close();}
